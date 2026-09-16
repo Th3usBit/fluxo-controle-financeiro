@@ -1,0 +1,5 @@
+# Mantém o repositório com LF, independente do sistema de quem clonar.
+* text=auto eol=lf
+
+*.png binary
+*.ico binary

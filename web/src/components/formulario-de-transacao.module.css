@@ -1,0 +1,252 @@
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.tipos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.tipo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 46px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-m);
+  background: var(--superficie-sutil);
+  color: var(--texto-secundario);
+  font-size: 14px;
+  font-weight: 600;
+  transition: border-color var(--transicao), color var(--transicao), background var(--transicao),
+    transform var(--transicao);
+}
+
+.tipo:active {
+  transform: scale(0.98);
+}
+
+.receita:hover {
+  color: var(--receita);
+  border-color: color-mix(in srgb, var(--receita) 50%, var(--borda));
+}
+
+.despesa:hover {
+  color: var(--despesa);
+  border-color: color-mix(in srgb, var(--despesa) 50%, var(--borda));
+}
+
+.receita.ativo {
+  background: var(--receita-suave);
+  border-color: var(--receita);
+  color: var(--receita-forte);
+}
+
+.despesa.ativo {
+  background: var(--despesa-suave);
+  border-color: var(--despesa);
+  color: var(--despesa-forte);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.campo label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--texto-secundario);
+}
+
+.entrada {
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-m);
+  background: var(--superficie-sutil);
+  color: var(--texto);
+  font-size: 14.5px;
+  outline: none;
+  transition: border-color var(--transicao), background var(--transicao), box-shadow var(--transicao);
+}
+
+.entrada::placeholder {
+  color: var(--texto-suave);
+}
+
+.entrada:focus {
+  border-color: var(--marca);
+  background: var(--superficie);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--marca) 18%, transparent);
+}
+
+.moeda {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 56px;
+  padding: 0 14px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-m);
+  background: var(--superficie-sutil);
+  transition: border-color var(--transicao), background var(--transicao), box-shadow var(--transicao);
+}
+
+.moeda:focus-within {
+  border-color: var(--marca);
+  background: var(--superficie);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--marca) 18%, transparent);
+}
+
+.prefixo {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--texto-suave);
+}
+
+.entradaDeValor {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--texto);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  outline: none;
+}
+
+.entradaDeValor::placeholder {
+  color: var(--texto-suave);
+  font-weight: 600;
+}
+
+.comErro,
+.entrada.comErro {
+  border-color: var(--despesa);
+  background: color-mix(in srgb, var(--despesa) 6%, var(--superficie));
+}
+
+.mensagemDeErro {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--despesa);
+}
+
+.sugestoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.sugestao {
+  height: 28px;
+  padding: 0 11px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-total);
+  background: transparent;
+  color: var(--texto-secundario);
+  font-size: 12.5px;
+  font-weight: 500;
+  transition: border-color var(--transicao), color var(--transicao), background var(--transicao);
+}
+
+.sugestao:hover {
+  border-color: var(--borda-forte);
+  color: var(--texto);
+  background: var(--superficie-sutil);
+}
+
+.sugestaoAtiva {
+  border-color: var(--marca);
+  color: var(--marca);
+  background: color-mix(in srgb, var(--marca) 10%, transparent);
+}
+
+.erroGeral {
+  padding: 11px 13px;
+  border: 1px solid color-mix(in srgb, var(--despesa) 35%, var(--borda));
+  border-radius: var(--raio-m);
+  background: var(--despesa-suave);
+  color: var(--despesa-forte);
+  font-size: 13px;
+}
+
+.acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.cancelar {
+  height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-m);
+  background: transparent;
+  color: var(--texto-secundario);
+  font-size: 14px;
+  font-weight: 600;
+  transition: color var(--transicao), border-color var(--transicao), background var(--transicao);
+}
+
+.cancelar:hover {
+  color: var(--texto);
+  border-color: var(--borda-forte);
+  background: var(--superficie-sutil);
+}
+
+.salvar {
+  height: 44px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: var(--raio-m);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+  transition: filter var(--transicao), transform var(--transicao), opacity var(--transicao);
+}
+
+.salvarReceita {
+  background: var(--receita);
+  box-shadow: 0 8px 20px -10px color-mix(in srgb, var(--receita) 90%, transparent);
+}
+
+.salvarDespesa {
+  background: var(--despesa);
+  box-shadow: 0 8px 20px -10px color-mix(in srgb, var(--despesa) 90%, transparent);
+}
+
+.salvar:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+
+.salvar:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.salvar:disabled {
+  opacity: 0.6;
+}
+
+@media (max-width: 480px) {
+  .acoes {
+    flex-direction: column-reverse;
+  }
+
+  .acoes button {
+    width: 100%;
+  }
+}

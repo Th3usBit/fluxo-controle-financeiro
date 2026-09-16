@@ -1,0 +1,124 @@
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  border-bottom: 1px solid transparent;
+  background: color-mix(in srgb, var(--fundo) 78%, transparent);
+  backdrop-filter: blur(12px);
+  transition: border-color var(--transicao), background var(--transicao);
+}
+
+.conteudo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  max-width: var(--largura-maxima);
+  margin: 0 auto;
+  padding: 18px 24px;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  background: linear-gradient(140deg, var(--marca), color-mix(in srgb, var(--marca) 55%, #22d3ee));
+  color: #ffffff;
+  box-shadow: 0 6px 18px -6px color-mix(in srgb, var(--marca) 70%, transparent);
+}
+
+.titulo {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.subtitulo {
+  font-size: 13px;
+  color: var(--texto-secundario);
+  line-height: 1.3;
+}
+
+.acoes {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.botaoDeTema {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-m);
+  background: var(--superficie);
+  color: var(--texto-secundario);
+  box-shadow: var(--sombra-p);
+  transition: color var(--transicao), border-color var(--transicao), transform var(--transicao);
+}
+
+.botaoDeTema:hover {
+  color: var(--texto);
+  border-color: var(--borda-forte);
+}
+
+.botaoDeTema:active {
+  transform: scale(0.96);
+}
+
+.botaoPrincipal {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: var(--raio-m);
+  background: var(--marca);
+  color: var(--marca-contraste);
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 8px 20px -10px color-mix(in srgb, var(--marca) 90%, transparent);
+  transition: background var(--transicao), transform var(--transicao), box-shadow var(--transicao);
+}
+
+.botaoPrincipal:hover {
+  background: var(--marca-hover);
+  box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--marca) 95%, transparent);
+}
+
+.botaoPrincipal:active {
+  transform: scale(0.97);
+}
+
+@media (max-width: 640px) {
+  .conteudo {
+    padding: 14px 16px;
+  }
+
+  .subtitulo {
+    display: none;
+  }
+
+  .botaoPrincipal span {
+    display: none;
+  }
+
+  .botaoPrincipal {
+    width: 40px;
+    padding: 0;
+    justify-content: center;
+  }
+}

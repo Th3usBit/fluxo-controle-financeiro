@@ -1,0 +1,192 @@
+.grade {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.cartao {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 152px;
+  padding: 20px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-g);
+  background: var(--superficie);
+  box-shadow: var(--sombra-m);
+  overflow: hidden;
+  animation: surgir 420ms cubic-bezier(0.2, 0, 0.1, 1) backwards;
+  transition: transform var(--transicao), box-shadow var(--transicao),
+    border-color var(--transicao);
+}
+
+.cartao:hover {
+  transform: translateY(-2px);
+  border-color: var(--borda-forte);
+}
+
+/* Fio de cor no topo indicando a natureza do número. */
+.cartao::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--cor-do-cartao);
+  opacity: 0.9;
+}
+
+.receita {
+  --cor-do-cartao: var(--receita);
+  --fundo-do-icone: var(--receita-suave);
+}
+
+.despesa {
+  --cor-do-cartao: var(--despesa);
+  --fundo-do-icone: var(--despesa-suave);
+}
+
+.saldo {
+  --cor-do-cartao: var(--saldo);
+  --fundo-do-icone: var(--saldo-suave);
+}
+
+.destaque {
+  background: linear-gradient(
+    150deg,
+    color-mix(in srgb, var(--saldo) 10%, var(--superficie)),
+    var(--superficie) 62%
+  );
+}
+
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.rotulo {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--texto-secundario);
+}
+
+.icone {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--fundo-do-icone);
+  color: var(--cor-do-cartao);
+}
+
+.valor {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  font-size: clamp(24px, 3.4vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--cor-do-cartao);
+}
+
+.saldo .valor {
+  color: var(--texto);
+}
+
+.sinal {
+  color: var(--despesa);
+}
+
+.rodape {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.barra {
+  position: relative;
+  height: 6px;
+  border-radius: var(--raio-total);
+  background: var(--superficie-sutil);
+  overflow: hidden;
+}
+
+:global(:root[data-tema='escuro']) .barra {
+  background: color-mix(in srgb, var(--borda) 70%, transparent);
+}
+
+.preenchimento {
+  display: block;
+  height: 100%;
+  border-radius: var(--raio-total);
+  background: var(--cor-do-cartao);
+  transition: width 620ms cubic-bezier(0.2, 0, 0.1, 1);
+}
+
+.descricao {
+  font-size: 12.5px;
+  color: var(--texto-suave);
+}
+
+/* Estado de carregamento */
+.esqueleto {
+  gap: 16px;
+  justify-content: center;
+}
+
+.esqueleto::after {
+  background: var(--borda);
+}
+
+.brilho {
+  height: 14px;
+  border-radius: var(--raio-p);
+  background: linear-gradient(
+    90deg,
+    var(--superficie-sutil) 25%,
+    color-mix(in srgb, var(--borda) 60%, transparent) 37%,
+    var(--superficie-sutil) 63%
+  );
+  background-size: 400% 100%;
+  animation: brilho 1.4s ease-in-out infinite;
+}
+
+.linhaCurta {
+  width: 38%;
+}
+
+.linhaGrande {
+  width: 68%;
+  height: 30px;
+}
+
+.linhaMedia {
+  width: 52%;
+}
+
+@media (max-width: 900px) {
+  .grade {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grade > :last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .grade {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cartao {
+    min-height: 0;
+  }
+}

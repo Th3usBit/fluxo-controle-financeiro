@@ -1,0 +1,16 @@
+{
+  "name": "fluxo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Controle financeiro pessoal - API em Express e interface em Next.js",
+  "scripts": {
+    "instalar": "npm --prefix server install && npm --prefix web install",
+    "dev:api": "npm --prefix server run dev",
+    "dev:web": "npm --prefix web run dev",
+    "test": "npm --prefix server test && npm --prefix web test",
+    "typecheck": "npm --prefix server run typecheck && npm --prefix web run typecheck"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

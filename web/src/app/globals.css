@@ -1,0 +1,238 @@
+/*
+ * Fluxo - design tokens e base da interface.
+ *
+ * Tudo que é cor, espaçamento, raio ou sombra sai daqui. Os componentes só
+ * consomem variáveis, então trocar o tema (ou a marca) é mexer em um lugar só.
+ */
+
+:root {
+  /* Superfícies */
+  --fundo: #f4f6f9;
+  --fundo-suave: #eef1f6;
+  --superficie: #ffffff;
+  --superficie-sutil: #f7f8fb;
+  --borda: #e3e7ee;
+  --borda-forte: #cfd5e0;
+
+  /* Texto */
+  --texto: #101521;
+  --texto-secundario: #5a6474;
+  --texto-suave: #8b94a3;
+
+  /* Cores de significado */
+  --receita: #0f9d6b;
+  --receita-forte: #047a52;
+  --receita-suave: #e6f7f0;
+  --despesa: #e02424;
+  --despesa-forte: #b91c1c;
+  --despesa-suave: #fdecec;
+  --saldo: #4f46e5;
+  --saldo-forte: #4338ca;
+  --saldo-suave: #eceafe;
+
+  /* Marca */
+  --marca: #4f46e5;
+  --marca-contraste: #ffffff;
+  --marca-hover: #4338ca;
+  --foco: #4f46e5;
+
+  /* Formas */
+  --raio-p: 8px;
+  --raio-m: 12px;
+  --raio-g: 18px;
+  --raio-total: 999px;
+
+  --sombra-p: 0 1px 2px rgba(16, 21, 33, 0.05);
+  --sombra-m: 0 4px 16px -4px rgba(16, 21, 33, 0.1), 0 1px 3px rgba(16, 21, 33, 0.04);
+  --sombra-g: 0 24px 48px -12px rgba(16, 21, 33, 0.22);
+
+  --transicao: 180ms cubic-bezier(0.2, 0, 0.1, 1);
+
+  --largura-maxima: 1180px;
+
+  color-scheme: light;
+}
+
+:root[data-tema='escuro'] {
+  --fundo: #080b12;
+  --fundo-suave: #0c1018;
+  --superficie: #121826;
+  --superficie-sutil: #161e2c;
+  --borda: #242d3e;
+  --borda-forte: #33405a;
+
+  --texto: #e9edf5;
+  --texto-secundario: #a3adbd;
+  --texto-suave: #6e7a8d;
+
+  --receita: #34d399;
+  --receita-forte: #6ee7b7;
+  --receita-suave: #0c2f26;
+  --despesa: #fb7185;
+  --despesa-forte: #fda4af;
+  --despesa-suave: #3a1620;
+  --saldo: #818cf8;
+  --saldo-forte: #a5b4fc;
+  --saldo-suave: #1e1e45;
+
+  --marca: #6366f1;
+  --marca-contraste: #ffffff;
+  --marca-hover: #818cf8;
+  --foco: #a5b4fc;
+
+  --sombra-p: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --sombra-m: 0 4px 16px -4px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
+  --sombra-g: 0 24px 48px -12px rgba(0, 0, 0, 0.7);
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  background-color: var(--fundo);
+  background-image: radial-gradient(
+    1100px 520px at 50% -320px,
+    color-mix(in srgb, var(--marca) 14%, transparent),
+    transparent 70%
+  );
+  background-repeat: no-repeat;
+  color: var(--texto);
+  font-family: var(--fonte-padrao), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color var(--transicao), color var(--transicao);
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Números de dinheiro sempre alinhados na mesma largura de dígito. */
+.numero {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--foco);
+  outline-offset: 2px;
+}
+
+/* Visível apenas para leitores de tela. */
+.apenas-leitor-de-tela {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--marca) 25%, transparent);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--borda-forte) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--borda-forte);
+  border: 3px solid transparent;
+  background-clip: content-box;
+  border-radius: var(--raio-total);
+}
+
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes brilho {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
