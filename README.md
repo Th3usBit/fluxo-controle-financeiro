@@ -188,38 +188,3 @@ fluxo/
 
 **CSS Modules com design tokens, sem framework de UI.** Cor, raio, sombra e espaçamento vivem em variáveis no `globals.css`; o tema escuro é uma redefinição dessas variáveis. Nenhuma dependência de estilo, e o que aparece na tela é CSS que dá para ler.
 
-**Idioma.** Interface, mensagens de erro, comentários e nomes de variáveis em português. Os campos do contrato HTTP (`title`, `amount`, `category`, `createdAt`) ficaram em inglês porque são o contrato pedido, e misturar os dois idiomas dentro do mesmo JSON seria pior. A única exceção no código são os hooks do React, que precisam do prefixo `use` — é exigência do próprio React e do ESLint, não escolha de estilo.
-
----
-
-## O que tem além do pedido
-
-- **Filtros combinados** por tipo, categoria e busca por título, aplicados também no resumo — os cartões acompanham o que está filtrado.
-- **Persistência em SQLite**, com índices e migração automática.
-- **34 testes** (18 na API, 16 no front), incluindo teste de componente do formulário.
-- **Gráfico de despesas por categoria**, com as menores agrupadas em "Outras".
-- **Painel de destaques**: maior despesa, maior receita, categoria que mais pesa e gasto médio.
-- **Tema claro e escuro**, seguindo a preferência do sistema e guardando a escolha, sem piscar branco no carregamento.
-- **Interface responsiva**, de 360px até telas largas.
-- **Acessibilidade**: foco visível, navegação por teclado no modal (Esc fecha, Tab não escapa), rótulos em todos os campos e `aria-live` nos avisos.
-- **Estados de verdade**: carregando (esqueleto), vazio, vazio-por-filtro, erro de API e confirmação antes de excluir.
-
-## Variáveis de ambiente
-
-Nenhuma é obrigatória. Os padrões já fazem o projeto rodar.
-
-**`server`** (veja `server/.env.example`)
-
-| Variável | Padrão | Para quê |
-| --- | --- | --- |
-| `PORT` | `3333` | Porta da API |
-| `CORS_ORIGIN` | `http://localhost:3000` | Origens liberadas, separadas por vírgula |
-| `STORAGE` | `sqlite` | `sqlite` grava em disco, `memoria` mantém em um array |
-| `DATABASE_FILE` | `data/fluxo.db` | Caminho do arquivo do banco |
-| `SEED` | `true` | `false` não cria as transações de exemplo |
-
-**`web`**
-
-| Variável | Padrão | Para quê |
-| --- | --- | --- |
-| `NEXT_PUBLIC_API_URL` | `http://localhost:3333` | Endereço da API |
