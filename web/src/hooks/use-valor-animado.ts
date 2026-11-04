@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 
-const DURACAO = 650
+const DURACAO = 1100
 const CONSULTA = '(prefers-reduced-motion: reduce)'
 
 function assinarPreferencia(ouvinte: () => void): () => void {
@@ -18,11 +18,12 @@ function suavizar(progresso: number): number {
 
 /**
  * Anima a transição entre dois valores para os totais não "pularem" na tela.
+ * Na primeira vez conta a partir de zero, então o saldo "sobe" ao abrir o app.
  * Quem pede menos animação no sistema recebe o número final direto.
  */
 export function useValorAnimado(valorFinal: number): number {
-  const [valor, definirValor] = useState(valorFinal)
-  const valorAnterior = useRef(valorFinal)
+  const [valor, definirValor] = useState(0)
+  const valorAnterior = useRef(0)
 
   const menosMovimento = useSyncExternalStore(
     assinarPreferencia,

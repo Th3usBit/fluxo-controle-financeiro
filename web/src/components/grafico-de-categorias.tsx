@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useMemo, type CSSProperties } from 'react'
 
 import { IconeGrafico } from '@/components/icones'
 import type { Resumo, TipoTransacao } from '@/types/transacao'
@@ -124,7 +124,10 @@ export function GraficoDeCategorias({ resumo, modo, carregando }: Props) {
               </div>
 
               <div className={estilos.trilho}>
-                <span className={estilos.preenchimento} style={{ width: `${barra.fatia}%` }} />
+                <span
+                  className={estilos.preenchimento}
+                  style={{ width: `${barra.fatia}%`, '--ordem-da-barra': posicao } as CSSProperties}
+                />
               </div>
 
               <span className={estilos.participacao}>

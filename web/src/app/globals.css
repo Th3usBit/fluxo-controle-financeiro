@@ -103,6 +103,13 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Ângulo animável da borda girando no cartão de saldo. */
+@property --angulo-da-borda {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
 body {
   min-height: 100dvh;
   background-color: var(--fundo);
@@ -119,6 +126,59 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   transition: background-color var(--transicao), color var(--transicao);
+}
+
+/*
+ * Aurora: manchas de cor da marca, da receita e do saldo flutuando atrás de
+ * tudo. Fica fixa, não captura clique e é bem suave para não brigar com os números.
+ */
+body {
+  position: relative;
+  isolation: isolate;
+}
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  z-index: -1;
+  width: 60vmax;
+  height: 60vmax;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+body::before {
+  top: -22vmax;
+  left: -16vmax;
+  background: radial-gradient(circle, var(--marca), transparent 65%);
+  animation: aurora 26s ease-in-out infinite alternate;
+}
+
+body::after {
+  right: -20vmax;
+  bottom: -26vmax;
+  background: radial-gradient(circle, var(--receita), transparent 65%);
+  animation: aurora 32s ease-in-out infinite alternate-reverse;
+}
+
+:root[data-tema='escuro'] body::before,
+:root[data-tema='escuro'] body::after {
+  opacity: 0.16;
+}
+
+@keyframes aurora {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(12vmax, 8vmax) scale(1.15);
+  }
+  100% {
+    transform: translate(-6vmax, 14vmax) scale(0.95);
+  }
 }
 
 h1,

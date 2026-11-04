@@ -5,12 +5,27 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { api, ErroDaApi } from '@/services/api'
 import type { Filtros, NovaTransacao, Resumo, Transacao } from '@/types/transacao'
 
+/**
+ * Última mudança feita pela pessoa (lançar ou excluir). Alimenta as animações
+ * de impacto: qual cartão reage, com qual valor e qual linha chegou.
+ */
+export interface Mudanca {
+  /** Muda a cada ação, para a animação tocar de novo mesmo com valor igual. */
+  chave: number
+  transacaoId: string
+  /** Valor da transação: positivo = receita, negativo = despesa. */
+  amount: number
+  /** 1 = entrou na lista, -1 = saiu. */
+  sentido: 1 | -1
+}
+
 interface EstadoDasTransacoes {
   transacoes: Transacao[]
   resumo: Resumo | null
   categorias: string[]
   carregando: boolean
   erro: ErroDaApi | null
+  mudanca: Mudanca | null
   recarregar: () => void
   criar: (dados: NovaTransacao) => Promise<Transacao>
   remover: (transacao: Transacao) => Promise<void>
@@ -39,6 +54,7 @@ export function useTransacoes(filtros: Filtros): EstadoDasTransacoes {
   const [categorias, definirCategorias] = useState<string[]>([])
   const [carregando, definirCarregando] = useState(true)
   const [erro, definirErro] = useState<ErroDaApi | null>(null)
+  const [mudanca, definirMudanca] = useState<Mudanca | null>(null)
 
   // Usado para descartar respostas de requisições antigas (filtro digitado rápido).
   const requisicaoAtual = useRef<AbortController | null>(null)
@@ -92,6 +108,7 @@ export function useTransacoes(filtros: Filtros): EstadoDasTransacoes {
   const criar = useCallback(
     async (dados: NovaTransacao): Promise<Transacao> => {
       const criada = await api.criarTransacao(dados)
+      definirMudanca({ chave: Date.now(), transacaoId: criada.id, amount: criada.amount, sentido: 1 })
       recarregar()
       return criada
     },
@@ -105,6 +122,12 @@ export function useTransacoes(filtros: Filtros): EstadoDasTransacoes {
 
       try {
         await api.removerTransacao(transacao.id)
+        definirMudanca({
+          chave: Date.now(),
+          transacaoId: transacao.id,
+          amount: transacao.amount,
+          sentido: -1,
+        })
         recarregar()
       } catch (falha) {
         definirTransacoes((lista) =>
@@ -122,6 +145,7 @@ export function useTransacoes(filtros: Filtros): EstadoDasTransacoes {
     categorias,
     carregando,
     erro,
+    mudanca,
     recarregar,
     criar,
     remover,

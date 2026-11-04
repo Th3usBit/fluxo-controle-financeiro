@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useMemo, useState, type CSSProperties } from 'react'
 
 import {
   IconeAlerta,
@@ -29,6 +29,8 @@ interface Props {
   carregando: boolean
   erro: string | null
   temFiltroAtivo: boolean
+  /** Transação que acabou de ser lançada: entra com destaque. */
+  idRecente: string | null
   aoRemover: (transacao: Transacao) => Promise<void>
   aoNovaTransacao: () => void
   aoLimparFiltros: () => void
@@ -64,8 +66,22 @@ function agruparPorDia(transacoes: Transacao[]): Grupo[] {
   return [...grupos.values()].sort((a, b) => b.chave.localeCompare(a.chave))
 }
 
+/** Tempo da animação de saída antes de a linha sair de fato da lista. */
+const DURACAO_DA_SAIDA = 420
+
+function preferePoucoMovimento(): boolean {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
+function esperar(ms: number): Promise<void> {
+  return new Promise((resolver) => setTimeout(resolver, ms))
+}
+
 interface PropsDoItem {
   transacao: Transacao
+  /** Posição na lista, para a entrada em cascata. */
+  ordem: number
+  recente: boolean
   emConfirmacao: boolean
   removendo: boolean
   aoPedirRemocao: () => void
@@ -75,6 +91,8 @@ interface PropsDoItem {
 
 function ItemDeTransacao({
   transacao,
+  ordem,
+  recente,
   emConfirmacao,
   removendo,
   aoPedirRemocao,
@@ -84,7 +102,15 @@ function ItemDeTransacao({
   const tipo = tipoDaTransacao(transacao.amount)
 
   return (
-    <li className={classes(estilos.item, estilos[tipo], removendo && estilos.saindo)}>
+    <li
+      className={classes(
+        estilos.item,
+        estilos[tipo],
+        recente && estilos.recente,
+        removendo && estilos.saindo,
+      )}
+      style={{ '--ordem': Math.min(ordem, 14) } as CSSProperties}
+    >
       <span className={estilos.avatar} aria-hidden="true">
         {iniciaisDaCategoria(transacao.category)}
       </span>
@@ -153,6 +179,7 @@ export function ListaDeTransacoes({
   carregando,
   erro,
   temFiltroAtivo,
+  idRecente,
   aoRemover,
   aoNovaTransacao,
   aoLimparFiltros,
@@ -163,9 +190,18 @@ export function ListaDeTransacoes({
 
   const grupos = useMemo(() => agruparPorDia(transacoes), [transacoes])
 
+  // Posição de cada transação na lista inteira (não só no dia), para a cascata.
+  const ordemDe = useMemo(
+    () => new Map(transacoes.map((transacao, posicao) => [transacao.id, posicao])),
+    [transacoes],
+  )
+
   async function confirmarRemocao(transacao: Transacao): Promise<void> {
     definirIdRemovendo(transacao.id)
     definirIdEmConfirmacao(null)
+
+    // Deixa a linha terminar de sair antes de tirá-la da lista.
+    if (!preferePoucoMovimento()) await esperar(DURACAO_DA_SAIDA)
 
     try {
       await aoRemover(transacao)
@@ -262,6 +298,8 @@ export function ListaDeTransacoes({
                   <ItemDeTransacao
                     key={transacao.id}
                     transacao={transacao}
+                    ordem={ordemDe.get(transacao.id) ?? 0}
+                    recente={idRecente === transacao.id}
                     emConfirmacao={idEmConfirmacao === transacao.id}
                     removendo={idRemovendo === transacao.id}
                     aoPedirRemocao={() => definirIdEmConfirmacao(transacao.id)}
