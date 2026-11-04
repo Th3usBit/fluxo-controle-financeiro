@@ -2,6 +2,10 @@
 
 # Fluxo
 
+[![CI](https://github.com/Th3usBit/fluxo-controle-financeiro/actions/workflows/ci.yml/badge.svg)](https://github.com/Th3usBit/fluxo-controle-financeiro/actions/workflows/ci.yml)
+[![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-blue.svg)](LICENSE)
+[![PRs bem-vindos](https://img.shields.io/badge/PRs-bem--vindos-brightgreen.svg)](CONTRIBUTING.md)
+
 **Veja para onde vai o seu dinheiro.**
 
 Registre receitas e despesas em segundos, acompanhe o saldo e descubra em quais categorias o mês está pesando.
@@ -65,3 +69,13 @@ npm run dev:web    # em outro: a interface, em http://localhost:3000
 ```
 
 Feito com Next.js, React, Express, SQLite e TypeScript.
+
+---
+
+## Contribuindo
+
+Achou um problema ou tem uma ideia? [Abra uma issue](https://github.com/Th3usBit/fluxo-controle-financeiro/issues/new/choose). Para enviar código, o [guia de contribuição](CONTRIBUTING.md) explica como o projeto está organizado e o que a CI confere. Quem participa segue o [código de conduta](CODE_OF_CONDUCT.md), e falhas de segurança são relatadas em privado, como descrito na [política de segurança](SECURITY.md).
+
+## Licença
+
+[MIT](LICENSE). Use, modifique e distribua à vontade.

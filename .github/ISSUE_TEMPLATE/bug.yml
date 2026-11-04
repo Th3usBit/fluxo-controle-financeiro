@@ -1,0 +1,43 @@
+name: Relatar um problema
+description: Algo não funciona como deveria.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Obrigado por avisar! Quanto mais detalhes, mais rápido dá para corrigir.
+  - type: textarea
+    id: oque
+    attributes:
+      label: O que aconteceu?
+      description: Descreva o problema e o que você esperava que acontecesse.
+    validations:
+      required: true
+  - type: textarea
+    id: passos
+    attributes:
+      label: Como reproduzir
+      placeholder: |
+        1. Clique em "Nova transação"
+        2. Digite 1.250,50 no valor
+        3. ...
+    validations:
+      required: true
+  - type: dropdown
+    id: onde
+    attributes:
+      label: Onde aconteceu?
+      options:
+        - Site publicado (GitHub Pages)
+        - Rodando localmente (API + interface)
+    validations:
+      required: true
+  - type: input
+    id: navegador
+    attributes:
+      label: Navegador e sistema
+      placeholder: Chrome 140 no Android, Firefox 145 no Windows...
+  - type: textarea
+    id: extras
+    attributes:
+      label: Capturas de tela ou mensagens de erro
+      description: Se tiver, cole aqui. Não inclua dados financeiros reais.
