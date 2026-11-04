@@ -17,22 +17,19 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f4f6f9' },
-    { media: '(prefers-color-scheme: dark)', color: '#080b12' },
-  ],
+  themeColor: '#f4f6f9',
 }
 
 /**
- * Aplica o tema antes da primeira pintura: sem isso, quem usa o modo escuro vê
- * um flash branco a cada carregamento.
+ * Aplica o tema antes da primeira pintura: sem isso, quem escolheu o modo
+ * escuro vê um flash branco a cada carregamento. O padrão é o tema claro; o
+ * escuro só vale quando a pessoa escolhe no botão.
  */
 const SCRIPT_DO_TEMA = `
 (function () {
   try {
     var salvo = localStorage.getItem('fluxo:tema');
-    var preferido = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'escuro' : 'claro';
-    document.documentElement.dataset.tema = salvo === 'claro' || salvo === 'escuro' ? salvo : preferido;
+    document.documentElement.dataset.tema = salvo === 'escuro' ? 'escuro' : 'claro';
   } catch (erro) {
     document.documentElement.dataset.tema = 'claro';
   }
