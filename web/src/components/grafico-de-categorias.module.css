@@ -104,7 +104,11 @@
   border-radius: 4px;
   background: var(--cor-da-serie);
   transform-origin: left center;
-  animation: crescer 620ms cubic-bezier(0.2, 0, 0.1, 1) backwards;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--cor-da-serie) 55%, transparent);
+  animation: crescer 1000ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: calc(500ms + var(--ordem-da-barra, 0) * 90ms);
   transition: width 500ms cubic-bezier(0.2, 0, 0.1, 1), filter var(--transicao);
 }
 
@@ -150,5 +154,25 @@
   }
   to {
     transform: scaleX(1);
+  }
+}
+
+/* Reflexo que corre pela barra depois que ela termina de crescer. */
+.preenchimento::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.55), transparent);
+  transform: translateX(-100%);
+  animation: correrBarra 900ms ease-out backwards;
+  animation-delay: calc(1300ms + var(--ordem-da-barra, 0) * 90ms);
+}
+
+@keyframes correrBarra {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
   }
 }

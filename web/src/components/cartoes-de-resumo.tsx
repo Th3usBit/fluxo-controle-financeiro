@@ -1,17 +1,30 @@
 'use client'
 
+import type { CSSProperties } from 'react'
+
 import { IconeDespesa, IconeReceita, IconeSaldo } from '@/components/icones'
+import type { Mudanca } from '@/hooks/use-transacoes'
 import { useValorAnimado } from '@/hooks/use-valor-animado'
 import type { Resumo } from '@/types/transacao'
 import { classes } from '@/utils/classes'
-import { formatarMoeda, pluralizar, porcentagem } from '@/utils/formatar'
+import { formatarMoeda, formatarMoedaComSinal, pluralizar, porcentagem } from '@/utils/formatar'
 
 import estilos from './cartoes-de-resumo.module.css'
 
 interface Props {
   resumo: Resumo | null
   carregando: boolean
+  /** Última ação da pessoa; null quando há filtro ativo (o total não reflete tudo). */
+  mudanca: Mudanca | null
 }
+
+interface Variacao {
+  chave: number
+  valor: number
+}
+
+/** Quantas faíscas saem do número quando ele muda. */
+const FAISCAS = Array.from({ length: 14 }, (_, indice) => indice)
 
 interface PropsDoCartao {
   variante: 'receita' | 'despesa' | 'saldo'
@@ -23,6 +36,7 @@ interface PropsDoCartao {
   proporcao: number
   destaque?: boolean
   atraso: number
+  variacao: Variacao | null
 }
 
 function Cartao({
@@ -34,6 +48,7 @@ function Cartao({
   proporcao,
   destaque = false,
   atraso,
+  variacao,
 }: PropsDoCartao) {
   const valorAnimado = useValorAnimado(valor)
   const negativo = valorAnimado < 0
@@ -50,10 +65,38 @@ function Cartao({
         </span>
       </header>
 
-      <p className={classes(estilos.valor, 'numero')}>
-        {negativo ? <span className={estilos.sinal}>-</span> : null}
-        {formatarMoeda(valorAnimado)}
-      </p>
+      <div className={estilos.areaDoValor}>
+        <p className={classes(estilos.valor, 'numero')}>
+          {negativo ? <span className={estilos.sinal}>-</span> : null}
+          {formatarMoeda(valorAnimado)}
+        </p>
+
+        {variacao ? (
+          <span
+            key={variacao.chave}
+            className={classes(
+              estilos.variacao,
+              variacao.valor < 0 ? estilos.variacaoNegativa : estilos.variacaoPositiva,
+              'numero',
+            )}
+            aria-hidden="true"
+          >
+            {formatarMoedaComSinal(variacao.valor)}
+          </span>
+        ) : null}
+
+        {variacao ? (
+          <span key={`faiscas-${variacao.chave}`} className={estilos.faiscas} aria-hidden="true">
+            {FAISCAS.map((indice) => (
+              <i key={indice} style={{ '--indice': indice } as CSSProperties} />
+            ))}
+          </span>
+        ) : null}
+      </div>
+
+      {variacao ? (
+        <span key={`impacto-${variacao.chave}`} className={estilos.impacto} aria-hidden="true" />
+      ) : null}
 
       <footer className={estilos.rodape}>
         <div
@@ -84,7 +127,21 @@ function CartaoVazio({ atraso }: { atraso: number }) {
 }
 
 /** Os três números que respondem "como estou de dinheiro?" em um olhar. */
-export function CartoesDeResumo({ resumo, carregando }: Props) {
+/** Quanto cada cartão mudou com a última ação, para o selo "+ R$ 189,90". */
+function variacoes(mudanca: Mudanca | null): Record<'receita' | 'despesa' | 'saldo', Variacao | null> {
+  if (!mudanca) return { receita: null, despesa: null, saldo: null }
+
+  const { chave, amount, sentido } = mudanca
+  const ehReceita = amount >= 0
+
+  return {
+    receita: ehReceita ? { chave, valor: sentido * amount } : null,
+    despesa: ehReceita ? null : { chave, valor: sentido * Math.abs(amount) },
+    saldo: { chave, valor: sentido * amount },
+  }
+}
+
+export function CartoesDeResumo({ resumo, carregando, mudanca }: Props) {
   if (carregando && !resumo) {
     return (
       <section className={estilos.grade} aria-busy="true" aria-label="Carregando totais">
@@ -97,6 +154,7 @@ export function CartoesDeResumo({ resumo, carregando }: Props) {
 
   const totais = resumo ?? { income: 0, expenses: 0, balance: 0, transactions: 0, byCategory: [] }
   const movimentado = totais.income + totais.expenses
+  const variacao = variacoes(mudanca)
 
   return (
     <section className={estilos.grade} aria-label="Resumo financeiro">
@@ -107,7 +165,8 @@ export function CartoesDeResumo({ resumo, carregando }: Props) {
         descricao={`${porcentagem(totais.income, movimentado)}% do que entrou e saiu`}
         icone={<IconeReceita tamanho={18} />}
         proporcao={porcentagem(totais.income, movimentado)}
-        atraso={0}
+        atraso={120}
+        variacao={variacao.receita}
       />
 
       <Cartao
@@ -117,7 +176,8 @@ export function CartoesDeResumo({ resumo, carregando }: Props) {
         descricao={`${porcentagem(totais.expenses, movimentado)}% do que entrou e saiu`}
         icone={<IconeDespesa tamanho={18} />}
         proporcao={porcentagem(totais.expenses, movimentado)}
-        atraso={60}
+        atraso={220}
+        variacao={variacao.despesa}
       />
 
       <Cartao
@@ -134,7 +194,8 @@ export function CartoesDeResumo({ resumo, carregando }: Props) {
         icone={<IconeSaldo tamanho={18} />}
         proporcao={totais.balance >= 0 ? porcentagem(totais.balance, totais.income) : 100}
         destaque
-        atraso={120}
+        atraso={0}
+        variacao={variacao.saldo}
       />
     </section>
   )

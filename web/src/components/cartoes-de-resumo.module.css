@@ -16,14 +16,33 @@
   background: var(--superficie);
   box-shadow: var(--sombra-m);
   overflow: hidden;
-  animation: surgir 420ms cubic-bezier(0.2, 0, 0.1, 1) backwards;
-  transition: transform var(--transicao), box-shadow var(--transicao),
+  animation: entrarCartao 760ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  transition: transform 260ms cubic-bezier(0.2, 0, 0.1, 1), box-shadow 260ms ease,
     border-color var(--transicao);
 }
 
 .cartao:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
   border-color: var(--borda-forte);
+  box-shadow:
+    var(--sombra-m),
+    0 18px 40px -18px color-mix(in srgb, var(--cor-do-cartao) 70%, transparent);
+}
+
+/* Reflexo de luz que atravessa o cartão uma vez, logo depois de ele entrar. */
+.cartao::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    color-mix(in srgb, var(--cor-do-cartao) 22%, transparent) 50%,
+    transparent 65%
+  );
+  transform: translateX(-120%);
+  animation: reflexo 1100ms cubic-bezier(0.4, 0, 0.2, 1) 700ms backwards;
+  pointer-events: none;
 }
 
 /* Fio de cor no topo indicando a natureza do número. */
@@ -32,8 +51,15 @@
   position: absolute;
   inset: 0 0 auto 0;
   height: 3px;
-  background: var(--cor-do-cartao);
-  opacity: 0.9;
+  background: linear-gradient(
+    90deg,
+    var(--cor-do-cartao),
+    color-mix(in srgb, var(--cor-do-cartao) 40%, white),
+    var(--cor-do-cartao)
+  );
+  background-size: 200% 100%;
+  opacity: 0.95;
+  animation: correnteza 3.2s linear infinite;
 }
 
 .receita {
@@ -51,12 +77,30 @@
   --fundo-do-icone: var(--saldo-suave);
 }
 
-.destaque {
-  background: linear-gradient(
-    150deg,
-    color-mix(in srgb, var(--saldo) 10%, var(--superficie)),
-    var(--superficie) 62%
-  );
+/* O saldo é o número principal: borda em gradiente girando sem parar. */
+.destaque,
+.destaque:hover {
+  border: 2px solid transparent;
+  padding: 19px;
+  background:
+    linear-gradient(
+        150deg,
+        color-mix(in srgb, var(--saldo) 10%, var(--superficie)),
+        var(--superficie) 62%
+      )
+      padding-box,
+    conic-gradient(
+        from var(--angulo-da-borda),
+        var(--borda) 0deg,
+        var(--borda) 200deg,
+        var(--saldo) 260deg,
+        var(--receita) 310deg,
+        var(--borda) 360deg
+      )
+      border-box;
+  animation:
+    entrarCartao 760ms cubic-bezier(0.16, 1, 0.3, 1) backwards,
+    girarBorda 5s linear infinite;
 }
 
 .topo {
@@ -127,7 +171,9 @@
   height: 100%;
   border-radius: var(--raio-total);
   background: var(--cor-do-cartao);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--cor-do-cartao) 70%, transparent);
   transition: width 620ms cubic-bezier(0.2, 0, 0.1, 1);
+  animation: encher 1100ms cubic-bezier(0.16, 1, 0.3, 1) 300ms backwards;
 }
 
 .descricao {
@@ -169,6 +215,167 @@
 
 .linhaMedia {
   width: 52%;
+}
+
+/* ---- Reação a um lançamento ou exclusão ---- */
+
+.areaDoValor {
+  position: relative;
+}
+
+/* Selo "+ R$ 189,90" que sobe do número e some. */
+.variacao {
+  position: absolute;
+  top: -6px;
+  right: 0;
+  padding: 3px 10px;
+  border-radius: var(--raio-total);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: selo 2200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.variacaoPositiva {
+  background: var(--receita-suave);
+  color: var(--receita-forte);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--receita) 45%, transparent),
+    0 8px 24px -6px color-mix(in srgb, var(--receita) 70%, transparent);
+}
+
+.variacaoNegativa {
+  background: var(--despesa-suave);
+  color: var(--despesa-forte);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--despesa) 45%, transparent),
+    0 8px 24px -6px color-mix(in srgb, var(--despesa) 70%, transparent);
+}
+
+/* Faíscas na cor do cartão, saindo do número em todas as direções. */
+.faiscas {
+  position: absolute;
+  left: 48px;
+  top: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.faiscas i {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px;
+  border-radius: 50%;
+  background: var(--cor-do-cartao);
+  box-shadow: 0 0 10px var(--cor-do-cartao);
+  --direcao: calc(var(--indice) * 25.7deg);
+  --distancia: calc(46px + mod(var(--indice), 3) * 14px);
+  animation: faisca 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.faiscas i:nth-child(even) {
+  width: 4px;
+  height: 4px;
+  margin: -2px;
+  animation-duration: 1150ms;
+}
+
+/* Anel de luz que pulsa pelo cartão inteiro. */
+.impacto {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  animation: impacto 1300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes entrarCartao {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.94);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes reflexo {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes correnteza {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes girarBorda {
+  to {
+    --angulo-da-borda: 360deg;
+  }
+}
+
+@keyframes encher {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes selo {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.6);
+  }
+  14% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.12);
+  }
+  24% {
+    transform: translateY(0) scale(1);
+  }
+  72% {
+    opacity: 1;
+    transform: translateY(-6px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-26px);
+  }
+}
+
+@keyframes faisca {
+  0% {
+    opacity: 1;
+    transform: rotate(var(--direcao)) translateY(0) scale(1.4);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--direcao)) translateY(calc(var(--distancia) * -1)) scale(0.3);
+  }
+}
+
+@keyframes impacto {
+  0% {
+    box-shadow:
+      inset 0 0 0 2px color-mix(in srgb, var(--cor-do-cartao) 90%, transparent),
+      0 0 0 0 color-mix(in srgb, var(--cor-do-cartao) 55%, transparent);
+    background: color-mix(in srgb, var(--cor-do-cartao) 16%, transparent);
+  }
+  100% {
+    box-shadow:
+      inset 0 0 0 2px transparent,
+      0 0 0 18px transparent;
+    background: transparent;
+  }
 }
 
 @media (max-width: 900px) {

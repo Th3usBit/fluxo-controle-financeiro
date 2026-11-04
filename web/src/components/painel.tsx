@@ -23,7 +23,7 @@ export function Painel() {
   const [filtros, definirFiltros] = useState<Filtros>(FILTROS_PADRAO)
   const [formularioAberto, definirFormularioAberto] = useState(false)
 
-  const { transacoes, resumo, categorias, carregando, erro, recarregar, criar, remover } =
+  const { transacoes, resumo, categorias, carregando, erro, mudanca, recarregar, criar, remover } =
     useTransacoes(filtros)
 
   const notificacoes = useNotificacoes()
@@ -62,7 +62,11 @@ export function Painel() {
       <Cabecalho aoNovaTransacao={() => definirFormularioAberto(true)} />
 
       <main className={estilos.conteudo}>
-        <CartoesDeResumo resumo={resumo} carregando={carregando} />
+        <CartoesDeResumo
+          resumo={resumo}
+          carregando={carregando}
+          mudanca={temFiltroAtivo ? null : mudanca}
+        />
 
         <BarraDeFiltros filtros={filtros} categorias={categorias} aoMudar={aoMudarFiltros} />
 
@@ -73,6 +77,7 @@ export function Painel() {
               carregando={carregando}
               erro={erro ? erro.message : null}
               temFiltroAtivo={temFiltroAtivo}
+              idRecente={mudanca?.sentido === 1 ? mudanca.transacaoId : null}
               aoRemover={excluir}
               aoNovaTransacao={() => definirFormularioAberto(true)}
               aoLimparFiltros={limparFiltros}
