@@ -20,3 +20,6 @@ server/data/
 .DS_Store
 Thumbs.db
 *.log
+
+# Documentação local (não versionada)
+docs/

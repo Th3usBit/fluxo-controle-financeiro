@@ -1,205 +1,71 @@
+<div align="center">
+
 # Fluxo
 
-Controle financeiro pessoal: registre receitas e despesas, acompanhe o saldo e veja para onde o dinheiro está indo.
+**Veja para onde vai o seu dinheiro.**
 
-Sem login, sem configuração extra. `npm install`, `npm run dev` nas duas pastas e está no ar.
+Registre receitas e despesas em segundos, acompanhe o saldo e descubra em quais categorias o mês está pesando.
 
-**Ao vivo:** <https://th3usbit.github.io/fluxo-controle-financeiro/> — a versão publicada roda só no navegador (veja [Versão no GitHub Pages](#versão-no-github-pages)).
+[**Abrir o Fluxo →**](https://th3usbit.github.io/fluxo-controle-financeiro/)
 
-![Tela principal do Fluxo no tema claro](docs/tela-clara.png)
+Grátis · sem cadastro · funciona no computador e no celular
 
-<details>
-<summary>Mais telas (tema escuro, formulário e celular)</summary>
+</div>
 
 <br>
 
-| Tema escuro | Nova transação |
-| --- | --- |
-| ![Tema escuro](docs/tela-escura.png) | ![Formulário de nova transação](docs/formulario.png) |
-
-<img src="docs/mobile.png" alt="Layout no celular" width="320">
-
-</details>
+![Tela principal do Fluxo](.github/assets/tela-clara.png)
 
 ---
 
-## Como rodar
+## O que dá para fazer
 
-**Pré-requisitos:** Node.js 18+ e npm.
+**Saber quanto sobrou, de relance.** Receitas, despesas e saldo ficam no topo da tela, junto com a fatia de cada um no que entrou e saiu.
 
-Abra dois terminais — um para a API, outro para a interface.
+**Lançar um gasto em dez segundos.** Escolha se é receita ou despesa, digite o valor e o título e salve. As categorias que você já usou aparecem como sugestão, então não precisa digitar tudo de novo.
 
-```bash
-# Back-end (porta 3333)
-cd server
-npm install
-npm run dev
-```
+**Descobrir onde o dinheiro está indo.** O painel *Para onde vai o dinheiro* ordena as categorias da maior para a menor despesa, com o percentual de cada uma. Os *Destaques* mostram qual foi a maior despesa e a maior receita.
 
-```bash
-# Front-end (porta 3000)
-cd web
-npm install
-npm run dev
-```
+**Encontrar qualquer lançamento.** Busque pelo título e filtre por receitas, despesas ou categoria. Os totais do topo acompanham o filtro, então é fácil saber, por exemplo, quanto foi só em alimentação.
 
-Pronto: abra <http://localhost:3000>.
+**Usar como preferir.** Tem tema claro e tema escuro, e o layout se ajusta ao celular.
 
-> Se preferir, a raiz tem atalhos: `npm run instalar` instala as duas pastas de uma vez, e `npm run dev:api` / `npm run dev:web` sobem cada parte sem precisar trocar de diretório.
+<table>
+  <tr>
+    <td width="50%"><img src=".github/assets/formulario.png" alt="Cadastro de uma nova despesa"></td>
+    <td width="50%"><img src=".github/assets/tela-escura.png" alt="Fluxo no tema escuro"></td>
+  </tr>
+  <tr>
+    <td align="center">Nova transação</td>
+    <td align="center">Tema escuro</td>
+  </tr>
+</table>
 
-Na primeira execução o banco nasce vazio e a API cadastra **10 transações de exemplo**, para a tela não abrir em branco. Para desligar isso, rode a API com `SEED=false`.
-
-### Rodando os testes
-
-```bash
-cd server && npm test   # 18 testes: API, validação e regra de saldo
-cd web    && npm test   # 16 testes: formulário e formatação
-```
-
-Outros comandos úteis nas duas pastas: `npm run typecheck` e, no front, `npm run lint` e `npm run build`.
+<p align="center">
+  <img src=".github/assets/mobile.png" alt="Fluxo no celular" width="300">
+</p>
 
 ---
 
-## A API
+## Seus dados ficam com você
 
-Base: `http://localhost:3333`
+Não tem conta nem login, e nada vai para um servidor: os lançamentos ficam salvos **no próprio navegador**. Isso tem duas consequências:
 
-| Método | Rota | O que faz |
-| --- | --- | --- |
-| `GET` | `/transactions` | Lista as transações, da mais recente para a mais antiga |
-| `POST` | `/transactions` | Cria uma transação |
-| `DELETE` | `/transactions/:id` | Remove uma transação |
-| `GET` | `/summary` | Receitas, despesas, saldo e quebra por categoria |
-| `GET` | `/categories` | Categorias já cadastradas (alimenta o filtro da interface) |
-| `GET` | `/health` | Verificação rápida de que a API está de pé |
+- Ninguém além de você vê os seus números.
+- Os dados ficam só naquele navegador e naquele aparelho. Se você limpar os dados do site ou abrir em outro aparelho, a lista começa do zero.
 
-### A transação
-
-```json
-{
-  "id": "0f6c1c8e-6d0e-4a0b-9a0f-1d9f0b2a5c31",
-  "title": "Salário",
-  "amount": 5400,
-  "category": "Salário",
-  "createdAt": "2026-09-15T12:00:00.000Z"
-}
-```
-
-`amount` positivo é receita, negativo é despesa. `id` e `createdAt` são gerados pelo back-end — o cliente não envia nem consegue sobrescrever.
-
-### Criando
-
-```bash
-curl -X POST http://localhost:3333/transactions \
-  -H "Content-Type: application/json" \
-  -d '{"title":"Mercado do mês","amount":-742.35,"category":"Alimentação"}'
-```
-
-O campo opcional `type` (`"receita"` ou `"despesa"`) manda no sinal do valor. É o que a interface usa: ela envia o valor sempre positivo e o tipo escolhido no formulário, e o back-end grava `-742.35`. Isso evita o erro clássico de cadastrar despesa com valor positivo.
-
-```bash
-curl -X POST http://localhost:3333/transactions \
-  -H "Content-Type: application/json" \
-  -d '{"title":"Mercado do mês","amount":742.35,"category":"Alimentação","type":"despesa"}'
-```
-
-### Filtros
-
-`GET /transactions` e `GET /summary` aceitam os mesmos parâmetros, então os totais na tela sempre batem com a lista logo abaixo:
-
-| Parâmetro | Valores | Exemplo |
-| --- | --- | --- |
-| `type` | `receita`, `despesa`, `todas` | `/transactions?type=despesa` |
-| `category` | texto livre (ignora acento e caixa) | `/summary?category=alimentacao` |
-| `search` | busca no título | `/transactions?search=mercado` |
-
-### Quando algo dá errado
-
-Todo erro volta no mesmo formato, com mensagem em português e o detalhe por campo:
-
-```json
-{
-  "erro": {
-    "mensagem": "Não foi possível criar a transação. Confira os campos informados.",
-    "detalhes": [
-      { "campo": "title", "mensagem": "O título precisa ter pelo menos 2 caracteres." },
-      { "campo": "amount", "mensagem": "O valor precisa ser diferente de zero." }
-    ]
-  }
-}
-```
-
-| Situação | Status |
-| --- | --- |
-| Campo faltando, inválido ou desconhecido | `400` |
-| JSON malformado no corpo | `400` |
-| `DELETE` em id que não existe | `404` |
-| Rota que não existe | `404` |
-| Falha inesperada | `500` |
-
-O front mostra esses erros no campo correspondente do formulário e, quando a API está fora do ar, troca a lista por um aviso com botão de tentar de novo.
+Na primeira visita, o Fluxo abre com alguns lançamentos de exemplo para você explorar. Pode apagar todos e começar do seu jeito.
 
 ---
 
-## Versão no GitHub Pages
+## Para quem quer rodar no próprio computador
 
-O Pages só serve arquivos estáticos, então a versão publicada não usa a API Express. Com `NEXT_PUBLIC_MODO=local`, o front troca o cliente HTTP por `services/api-local.ts`, que segue o mesmo contrato e as mesmas regras (filtros sem acento e caixa, sinal pelo tipo, resumo arredondado) e guarda as transações no `localStorage` de cada visitante. Cada pessoa vê os seus próprios dados, e a primeira visita abre com as 10 transações de exemplo.
-
-O workflow `.github/workflows/pages.yml` roda typecheck, lint e testes, gera o build estático (`output: 'export'`) e publica a cada push na `main`. Para gerar localmente:
+O Fluxo também tem uma versão completa, com servidor e banco de dados próprios. Você precisa do [Node.js](https://nodejs.org) 18 ou mais recente.
 
 ```bash
-cd web
-NEXT_PUBLIC_MODO=local npm run build   # gera web/out
+npm run instalar   # instala tudo
+npm run dev:api    # em um terminal: o servidor
+npm run dev:web    # em outro: a interface, em http://localhost:3000
 ```
 
----
-
-## Estrutura
-
-```
-fluxo/
-├── server/                      # API - Node + Express + TypeScript
-│   ├── src/
-│   │   ├── server.ts            # sobe o servidor e escolhe o armazenamento
-│   │   ├── app.ts               # monta o Express (recebe o repositório por parâmetro)
-│   │   ├── routes/              # desenho das rotas
-│   │   ├── controllers/         # entrada HTTP: valida, chama o repositório, responde
-│   │   ├── repositories/        # acesso a dados: interface + SQLite + memória
-│   │   ├── schemas/             # validação com Zod, em português
-│   │   ├── shared/              # erros da aplicação e cálculo do resumo
-│   │   ├── middlewares/         # log, 404 e tratamento central de erros
-│   │   ├── database/            # conexão SQLite, migração e dados de exemplo
-│   │   └── types/               # tipos do domínio
-│   └── tests/                   # Vitest + Supertest
-│
-├── web/                         # Interface - Next.js (App Router) + React + TypeScript
-│   ├── src/
-│   │   ├── app/                 # layout, página e design tokens
-│   │   ├── components/          # cabeçalho, cartões, gráfico, lista, modal, formulário
-│   │   ├── hooks/               # estado das transações, tema e animação dos totais
-│   │   ├── services/            # cliente da API
-│   │   ├── types/               # espelho tipado do contrato
-│   │   └── utils/               # formatação de dinheiro e datas em pt-BR
-│   └── tests/                   # Vitest + Testing Library
-│
-└── docs/                        # capturas usadas neste README
-```
-
----
-
-## Decisões
-
-**Camada de repositório.** Os controllers dependem de uma interface (`RepositorioDeTransacoes`), não do banco. Existem duas implementações: SQLite, usada quando a API sobe, e memória, usada nos testes — que por isso rodam rápido e sem tocar em arquivo nenhum. Trocar por Postgres amanhã é escrever uma terceira implementação, sem mexer nas rotas.
-
-**SQLite de verdade, mas sem setup.** `better-sqlite3` instala com binário pronto (não precisa de compilador) e o arquivo `server/data/fluxo.db` é criado junto com a tabela na primeira execução. Quem preferir rodar sem tocar no disco usa `STORAGE=memoria`.
-
-**Validação no Zod, com mensagem que dá para mostrar na tela.** O schema aceita valor em número ou texto (`"1250,50"` funciona), recusa zero, limita a duas casas decimais, corta espaços de título e categoria e rejeita campo desconhecido — `{ "titulo": ... }` em vez de `{ "title": ... }` vira um erro explicando o que enviar.
-
-**Saldo calculado em função pura.** `calcularResumo` não conhece HTTP nem banco: recebe uma lista e devolve os totais. É onde mora a regra de negócio e é o que os testes cobrem com mais cuidado, inclusive o arredondamento (`0.1 + 0.2` não pode virar `0.30000000000000004` em cima de dinheiro).
-
-**Express 5.** Promise rejeitada dentro de um handler assíncrono cai sozinha no tratador central de erros, sem precisar embrulhar cada rota num `try/catch`.
-
-**TypeScript estrito nos dois lados.** `strict` e `noUncheckedIndexedAccess` ligados, sem nenhum `any` no projeto. O front tem o contrato da API tipado em `types/transacao.ts`, e o erro da API é uma classe (`ErroDaApi`) que carrega status e detalhes por campo.
-
-**CSS Modules com design tokens, sem framework de UI.** Cor, raio, sombra e espaçamento vivem em variáveis no `globals.css`; o tema escuro é uma redefinição dessas variáveis. Nenhuma dependência de estilo, e o que aparece na tela é CSS que dá para ler.
-
+Feito com Next.js, React, Express, SQLite e TypeScript.
