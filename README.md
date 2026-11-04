@@ -67,24 +67,43 @@ O Fluxo tem duas formas de rodar:
 
 ### Ferramentas e tecnologias
 
-| Camada | Tecnologia | Versão | Para que serve |
-| --- | --- | --- | --- |
-| Linguagem | [TypeScript](https://www.typescriptlang.org) | 7 na API · 5 na interface | Todo o código, em modo estrito |
-| Ambiente | [Node.js](https://nodejs.org) + npm | 22 (mínimo 18) | Roda a API, as ferramentas e os testes |
-| **API** | [Express](https://expressjs.com) | 5.3 | Servidor HTTP e rotas |
-| | [better-sqlite3](https://github.com/WiseLibs/better-sqlite3) | 13 | Banco SQLite em arquivo, sem instalar servidor de banco |
-| | [Zod](https://zod.dev) | 4.6 | Validação dos dados recebidos, com mensagens em português |
-| | [cors](https://github.com/expressjs/cors) | 2.8 | Libera a interface (porta 3000) para chamar a API (porta 3333) |
-| | [tsx](https://tsx.is) | 4.23 | Roda o TypeScript direto em desenvolvimento, recarregando a cada mudança |
-| **Interface** | [Next.js](https://nextjs.org) (App Router) | 16.4 | Estrutura da aplicação e build estático para o GitHub Pages |
-| | [React](https://react.dev) | 19.3 | Componentes e estado da tela |
-| | CSS Modules | nativo do Next | Estilos isolados por componente, com tema claro e escuro por variáveis CSS |
-| **Testes** | [Vitest](https://vitest.dev) | 5.0 | Executor de testes nas duas partes |
-| | [Supertest](https://github.com/ladjs/supertest) | 7.3 | Testa as rotas da API sem subir servidor |
-| | [Testing Library](https://testing-library.com) + jsdom | 16 · 30 | Testa componentes como o usuário usa |
-| **Qualidade** | [ESLint](https://eslint.org) + eslint-config-next | 9 · 16.4 | Padrões de código da interface |
-| **Automação** | GitHub Actions | — | CI em todo pull request e publicação no GitHub Pages |
-| | Dependabot | — | Atualizações mensais de dependências |
+**Linguagem e ambiente**
+
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js_22-5FA04E?style=for-the-badge&logo=nodedotjs&logoColor=white)
+
+Todo o código é TypeScript em modo estrito, rodando no Node.js.
+
+**Interface**
+
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-149ECA?style=for-the-badge&logo=react&logoColor=white)
+![CSS Modules](https://img.shields.io/badge/CSS_Modules-663399?style=for-the-badge&logo=css&logoColor=white)
+
+O Next.js organiza as páginas e gera o site estático do GitHub Pages, o React monta a tela e o CSS Modules cuida dos estilos e dos temas claro e escuro.
+
+**API e dados**
+
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![Zod](https://img.shields.io/badge/Zod-3E67B1?style=for-the-badge&logo=zod&logoColor=white)
+
+O Express recebe os pedidos, o SQLite guarda os dados num arquivo (sem instalar servidor de banco) e o Zod valida tudo o que chega, com mensagens em português.
+
+**Testes e qualidade**
+
+![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)
+![Testing Library](https://img.shields.io/badge/Testing_Library-E33332?style=for-the-badge&logo=testinglibrary&logoColor=white)
+![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)
+
+Testes de rotas, regras e componentes rodam no Vitest com Testing Library e Supertest. O ESLint mantém o padrão do código.
+
+**Automação**
+
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
+![Dependabot](https://img.shields.io/badge/Dependabot-025E8C?style=for-the-badge&logo=dependabot&logoColor=white)
+
+Todo pull request passa pela CI, cada push na `main` publica o site, e as dependências são atualizadas todo mês.
 
 ### Como a aplicação funciona
 
