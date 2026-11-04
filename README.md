@@ -41,10 +41,6 @@ Grátis · sem cadastro · funciona no computador e no celular
   </tr>
 </table>
 
-<p align="center">
-  <img src=".github/assets/mobile.png" alt="Fluxo no celular" width="300">
-</p>
-
 ---
 
 ## Seus dados ficam com você
