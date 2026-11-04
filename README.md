@@ -6,59 +6,150 @@
 [![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-blue.svg)](LICENSE)
 [![PRs bem-vindos](https://img.shields.io/badge/PRs-bem--vindos-brightgreen.svg)](CONTRIBUTING.md)
 
-**Veja para onde vai o seu dinheiro.**
+## Pare de se perguntar para onde foi o seu dinheiro.
 
-Registre receitas e despesas em segundos, acompanhe o saldo e descubra em quais categorias o mês está pesando.
+O Fluxo mostra seu saldo, seus gastos e o que mais pesa no mês **em uma tela só**.<br>
+Sem planilha. Sem cadastro. Sem entregar seus dados para ninguém.
 
-[**Abrir o Fluxo →**](https://th3usbit.github.io/fluxo-controle-financeiro/)
+### [**→ Abrir o Fluxo agora, é grátis**](https://th3usbit.github.io/fluxo-controle-financeiro/)
 
-Grátis · sem cadastro · funciona no computador e no celular
+<sub>Nada de conta, e-mail ou cartão. Abriu, usou.</sub>
 
 </div>
 
 <br>
 
-![Tela principal do Fluxo](.github/assets/tela-clara.png)
+![O Fluxo em ação: os totais sobem, uma despesa é lançada e o saldo reage na hora](.github/assets/fluxo-em-acao.gif)
 
 ---
 
-## O que dá para fazer
+## O fim do mês não precisa ser uma surpresa
 
-**Saber quanto sobrou, de relance.** Receitas, despesas e saldo ficam no topo da tela, junto com a fatia de cada um no que entrou e saiu.
+O salário cai, os dias passam e, quando você olha, o dinheiro já foi. Foi no mercado? Na assinatura que você nem usa mais? Nos pedidos de comida da semana?
 
-**Lançar um gasto em dez segundos.** Escolha se é receita ou despesa, digite o valor e o título e salve. As categorias que você já usou aparecem como sugestão, então não precisa digitar tudo de novo.
+A planilha dá trabalho demais para manter. O app do banco mistura tudo. E o caderninho fica esquecido na gaveta.
 
-**Descobrir onde o dinheiro está indo.** O painel *Para onde vai o dinheiro* ordena as categorias da maior para a menor despesa, com o percentual de cada uma. Os *Destaques* mostram qual foi a maior despesa e a maior receita.
+**Sem saber para onde o dinheiro vai, não dá para decidir onde cortar.**
 
-**Encontrar qualquer lançamento.** Busque pelo título e filtre por receitas, despesas ou categoria. Os totais do topo acompanham o filtro, então é fácil saber, por exemplo, quanto foi só em alimentação.
+O Fluxo resolve isso do jeito mais simples possível: **você anota, ele organiza e mostra.**
 
-**Usar como preferir.** Tem tema claro e tema escuro, e o layout se ajusta ao celular.
+---
+
+## Tudo o que importa, em um olhar
+
+### 💰 Seu saldo na cara, sem fazer conta de cabeça
+Receitas, despesas e saldo ficam no topo da tela, com a fatia de cada um no que entrou e saiu. Você bate o olho e já sabe se está no azul ou no vermelho.
+
+### ⚡ Anote o gasto antes de esquecer
+São **dez segundos**: escolha receita ou despesa, digite o valor e salve. As categorias que você já usa aparecem como sugestão, e o valor pode ir do jeito que você escreve: `1.250,50`.
+
+### 🔍 Descubra o vilão do mês
+O painel **Para onde vai o dinheiro** coloca suas categorias em ordem, da que mais pesa para a que menos pesa. Quando a moradia sozinha leva 55% de tudo o que saiu, você vê isso sem precisar procurar.
+
+### 🎯 Responda qualquer pergunta sobre o seu dinheiro
+"Quanto eu gastei com comida?" Filtre por categoria e **os totais do topo respondem na hora**. Busque pelo nome, separe só receitas ou só despesas: tudo acompanha o filtro.
+
+### ✨ Veja cada lançamento acontecer
+Lançou uma despesa? O valor aparece no cartão, o saldo reage em vermelho e a linha nova chega brilhando na lista. Nada muda em silêncio, então você nunca fica na dúvida se salvou.
+
+### 🌗 Do seu jeito, onde você estiver
+Tema claro ou escuro, no computador ou no celular. É só abrir o navegador.
 
 <table>
   <tr>
-    <td width="50%"><img src=".github/assets/formulario.png" alt="Cadastro de uma nova despesa"></td>
-    <td width="50%"><img src=".github/assets/tela-escura.png" alt="Fluxo no tema escuro"></td>
+    <td width="50%"><img src=".github/assets/formulario.png" alt="Lançando uma nova despesa em segundos"></td>
+    <td width="50%"><img src=".github/assets/tela-escura.png" alt="O Fluxo no tema escuro"></td>
   </tr>
   <tr>
-    <td align="center">Nova transação</td>
-    <td align="center">Tema escuro</td>
+    <td align="center"><b>Lançar leva dez segundos</b></td>
+    <td align="center"><b>Tema escuro para usar à noite</b></td>
   </tr>
 </table>
 
 ---
 
-## Seus dados ficam com você
+## Seus números são só seus
 
-Não tem conta nem login, e nada vai para um servidor: os lançamentos ficam salvos **no próprio navegador**. Isso tem duas consequências:
+Finanças são assunto pessoal. Por isso, o Fluxo **não tem conta, não tem login e não manda nada para servidor nenhum**: cada lançamento fica guardado no seu próprio navegador.
 
-- Ninguém além de você vê os seus números.
-- Os dados ficam só naquele navegador e naquele aparelho. Se você limpar os dados do site ou abrir em outro aparelho, a lista começa do zero.
+- 🔒 **Ninguém vê seus números.** Nem nós.
+- 🚫 **Sem anúncio, sem venda de dados, sem letra miúda.**
+- 🧾 **Código aberto:** qualquer pessoa pode conferir exatamente o que o Fluxo faz.
 
-Na primeira visita, o Fluxo abre com alguns lançamentos de exemplo para você explorar. Pode apagar todos e começar do seu jeito.
+**A contrapartida, com toda a transparência:** como os dados vivem no navegador, eles ficam só naquele aparelho. Abrir em outro aparelho ou limpar os dados do site começa a lista do zero.
 
 ---
 
-## Para quem quer rodar no próprio computador
+## Comece em três passos
+
+1. **[Abra o Fluxo.](https://th3usbit.github.io/fluxo-controle-financeiro/)** Não precisa instalar nada.
+2. **Explore os exemplos.** O app abre com um mês de lançamentos de mentira para você ver como tudo funciona.
+3. **Apague os exemplos e lance o seu primeiro gasto.** Em uma semana, você já sabe para onde vai o seu dinheiro.
+
+---
+
+## Perguntas frequentes
+
+<details>
+<summary><b>É grátis mesmo?</b></summary>
+<br>
+Sim. O Fluxo é código aberto, sob a licença MIT. Não tem plano pago, anúncio nem cobrança escondida.
+</details>
+
+<details>
+<summary><b>Preciso criar conta?</b></summary>
+<br>
+Não. Você abre o site e já começa a usar.
+</details>
+
+<details>
+<summary><b>Alguém consegue ver meus dados?</b></summary>
+<br>
+Não. Os lançamentos ficam só no navegador do seu aparelho e não passam por servidor nenhum.
+</details>
+
+<details>
+<summary><b>Funciona no celular?</b></summary>
+<br>
+Sim, direto no navegador do celular, com a tela adaptada para ele.
+</details>
+
+<details>
+<summary><b>Os dados sincronizam entre o computador e o celular?</b></summary>
+<br>
+Não. Esse é o preço de não ter servidor: cada aparelho guarda a própria lista. Use sempre no mesmo aparelho e no mesmo navegador.
+</details>
+
+<details>
+<summary><b>Ele se conecta com o meu banco?</b></summary>
+<br>
+Não, e isso é proposital. Você lança cada valor, o que te obriga a olhar para cada gasto. É exatamente esse olhar que muda o hábito.
+</details>
+
+<details>
+<summary><b>E se eu limpar os dados do navegador?</b></summary>
+<br>
+A lista volta para os exemplos iniciais. Se o histórico é importante para você, evite limpar os dados desse site.
+</details>
+
+<br>
+
+<div align="center">
+
+### Pronto para descobrir para onde vai o seu dinheiro?
+
+### [**→ Abrir o Fluxo agora**](https://th3usbit.github.io/fluxo-controle-financeiro/)
+
+<sub>Grátis · sem cadastro · seus dados ficam com você</sub>
+
+</div>
+
+---
+
+
+## Por dentro do Fluxo
+
+**Quer rodar na sua máquina, estudar o código ou deixar o Fluxo melhor?** Você está no lugar certo. O projeto é TypeScript estrito de ponta a ponta, tem testes na API e na interface e passa pela CI em cada pull request. Em cinco minutos ele está rodando aí.
 
 O Fluxo tem duas formas de rodar:
 
@@ -90,6 +181,8 @@ O Fluxo tem duas formas de rodar:
 - Dependabot: atualização mensal das dependências
 
 ### Como a aplicação funciona
+
+Do clique em **Salvar** até o número mudar na tela, o caminho é este:
 
 ```mermaid
 flowchart LR
@@ -129,7 +222,7 @@ Passo a passo de um lançamento:
 5. A tela pede de novo, **ao mesmo tempo**, a lista, o resumo e as categorias, com os filtros ativos. Por isso os totais do topo sempre batem com a lista.
 6. O `calcularResumo` soma receitas e despesas, calcula o saldo e agrupa por categoria, arredondando em centavos.
 
-### Passo a passo
+### Rodando em cinco minutos
 
 **1. Pré-requisitos:** [Git](https://git-scm.com), e [Node.js](https://nodejs.org) 22 com npm. Quem usa o [nvm](https://github.com/nvm-sh/nvm) pode rodar `nvm use` na pasta do projeto, que lê o `.nvmrc`.
 
@@ -172,7 +265,7 @@ npm run dev:api     # API em http://localhost:3333
 npm run dev:web     # interface em http://localhost:3000
 ```
 
-Abra <http://localhost:3000>. Na primeira execução, a API cria o banco e cadastra 10 transações de exemplo.
+Abra <http://localhost:3000> e pronto. Na primeira execução, a API cria o banco sozinha e cadastra 10 transações de exemplo, então você já vê tudo funcionando.
 
 Para rodar **só a interface**, como no GitHub Pages:
 
@@ -254,10 +347,17 @@ fluxo-controle-financeiro/
 
 ---
 
-## Contribuindo
+## Faça parte
 
-Achou um problema ou tem uma ideia? [Abra uma issue](https://github.com/Th3usBit/fluxo-controle-financeiro/issues/new/choose). Para enviar código, o [guia de contribuição](CONTRIBUTING.md) explica como o projeto está organizado e o que a CI confere. Quem participa segue o [código de conduta](CODE_OF_CONDUCT.md), e falhas de segurança são relatadas em privado, como descrito na [política de segurança](SECURITY.md).
+O Fluxo é aberto, e **toda contribuição conta**: corrigir um erro de digitação, sugerir uma ideia ou escrever uma funcionalidade inteira.
+
+- 🐛 **Achou um problema ou teve uma ideia?** [Abra uma issue](https://github.com/Th3usBit/fluxo-controle-financeiro/issues/new/choose). Leva um minuto e já ajuda.
+- 🛠️ **Quer escrever código?** O [guia de contribuição](CONTRIBUTING.md) mostra como o projeto está organizado e o que a CI confere. Você não começa no escuro.
+- 🤝 **Aqui todo mundo é bem-vindo.** Quem participa segue o [código de conduta](CODE_OF_CONDUCT.md).
+- 🔐 **Encontrou uma falha de segurança?** Relate em privado, como descrito na [política de segurança](SECURITY.md).
+
+Gostou do projeto? **Deixe uma ⭐ no repositório.** É de graça e ajuda o Fluxo a chegar em mais gente.
 
 ## Licença
 
-[MIT](LICENSE). Use, modifique e distribua à vontade.
+[MIT](LICENSE): use, modifique e distribua à vontade, inclusive em projetos comerciais.
