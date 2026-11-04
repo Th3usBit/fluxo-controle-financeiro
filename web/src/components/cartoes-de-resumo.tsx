@@ -21,6 +21,8 @@ interface Props {
 interface Variacao {
   chave: number
   valor: number
+  /** true quando a mudança fez o saldo subir: a cor segue o efeito no dinheiro. */
+  boaNoticia: boolean
 }
 
 /** Quantas faíscas saem do número quando ele muda. */
@@ -76,7 +78,7 @@ function Cartao({
             key={variacao.chave}
             className={classes(
               estilos.variacao,
-              variacao.valor < 0 ? estilos.variacaoNegativa : estilos.variacaoPositiva,
+              variacao.boaNoticia ? estilos.variacaoPositiva : estilos.variacaoNegativa,
               'numero',
             )}
             aria-hidden="true"
@@ -133,11 +135,13 @@ function variacoes(mudanca: Mudanca | null): Record<'receita' | 'despesa' | 'sal
 
   const { chave, amount, sentido } = mudanca
   const ehReceita = amount >= 0
+  // Lançar receita ou excluir despesa melhora o saldo; o contrário piora.
+  const boaNoticia = sentido * amount >= 0
 
   return {
-    receita: ehReceita ? { chave, valor: sentido * amount } : null,
-    despesa: ehReceita ? null : { chave, valor: sentido * Math.abs(amount) },
-    saldo: { chave, valor: sentido * amount },
+    receita: ehReceita ? { chave, valor: sentido * amount, boaNoticia } : null,
+    despesa: ehReceita ? null : { chave, valor: sentido * Math.abs(amount), boaNoticia },
+    saldo: { chave, valor: sentido * amount, boaNoticia },
   }
 }
 
