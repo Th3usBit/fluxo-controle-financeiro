@@ -4,6 +4,8 @@ Controle financeiro pessoal: registre receitas e despesas, acompanhe o saldo e v
 
 Sem login, sem configuração extra. `npm install`, `npm run dev` nas duas pastas e está no ar.
 
+**Ao vivo:** <https://th3usbit.github.io/fluxo-controle-financeiro/> — a versão publicada roda só no navegador (veja [Versão no GitHub Pages](#versão-no-github-pages)).
+
 ![Tela principal do Fluxo no tema claro](docs/tela-clara.png)
 
 <details>
@@ -136,6 +138,19 @@ Todo erro volta no mesmo formato, com mensagem em português e o detalhe por cam
 | Falha inesperada | `500` |
 
 O front mostra esses erros no campo correspondente do formulário e, quando a API está fora do ar, troca a lista por um aviso com botão de tentar de novo.
+
+---
+
+## Versão no GitHub Pages
+
+O Pages só serve arquivos estáticos, então a versão publicada não usa a API Express. Com `NEXT_PUBLIC_MODO=local`, o front troca o cliente HTTP por `services/api-local.ts`, que segue o mesmo contrato e as mesmas regras (filtros sem acento e caixa, sinal pelo tipo, resumo arredondado) e guarda as transações no `localStorage` de cada visitante. Cada pessoa vê os seus próprios dados, e a primeira visita abre com as 10 transações de exemplo.
+
+O workflow `.github/workflows/pages.yml` roda typecheck, lint e testes, gera o build estático (`output: 'export'`) e publica a cada push na `main`. Para gerar localmente:
+
+```bash
+cd web
+NEXT_PUBLIC_MODO=local npm run build   # gera web/out
+```
 
 ---
 

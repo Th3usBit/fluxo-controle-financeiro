@@ -1,5 +1,13 @@
 import type { Filtros, NovaTransacao, Resumo, Transacao } from '@/types/transacao'
 
+import { apiLocal } from './api-local'
+
+/**
+ * Com NEXT_PUBLIC_MODO=local a interface dispensa o back-end e guarda os dados
+ * no navegador. É assim que a versão do GitHub Pages funciona.
+ */
+export const MODO_LOCAL = process.env.NEXT_PUBLIC_MODO === 'local'
+
 /** Endereço da API. Dá para apontar para outro host com NEXT_PUBLIC_API_URL. */
 export const URL_DA_API = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3333'
 
@@ -89,7 +97,7 @@ function comFiltros(caminho: string, filtros?: Partial<Filtros>): string {
   return query ? `${caminho}?${query}` : caminho
 }
 
-export const api = {
+const apiRemota = {
   listarTransacoes(filtros?: Partial<Filtros>, sinal?: AbortSignal): Promise<Transacao[]> {
     return requisitar<Transacao[]>(comFiltros('/transactions', filtros), { signal: sinal ?? null })
   },
@@ -113,3 +121,5 @@ export const api = {
     return requisitar<void>(`/transactions/${id}`, { method: 'DELETE' })
   },
 }
+
+export const api = MODO_LOCAL ? apiLocal : apiRemota

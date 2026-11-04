@@ -12,7 +12,7 @@ import { ListaDeTransacoes } from '@/components/lista-de-transacoes'
 import { Modal } from '@/components/modal'
 import { useNotificacoes } from '@/components/notificacoes'
 import { useTransacoes } from '@/hooks/use-transacoes'
-import { URL_DA_API } from '@/services/api'
+import { MODO_LOCAL, URL_DA_API } from '@/services/api'
 import { FILTROS_PADRAO, type Filtros, type NovaTransacao, type Transacao } from '@/types/transacao'
 import { formatarMoeda } from '@/utils/formatar'
 
@@ -93,10 +93,14 @@ export function Painel() {
       </main>
 
       <footer className={estilos.rodape}>
-        <p>
-          Fluxo · controle financeiro pessoal · API em{' '}
-          <span className={estilos.endereco}>{URL_DA_API}</span>
-        </p>
+        {MODO_LOCAL ? (
+          <p>Fluxo · controle financeiro pessoal · seus dados ficam só neste navegador</p>
+        ) : (
+          <p>
+            Fluxo · controle financeiro pessoal · API em{' '}
+            <span className={estilos.endereco}>{URL_DA_API}</span>
+          </p>
+        )}
       </footer>
 
       <Modal
