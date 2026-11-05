@@ -6,139 +6,141 @@
 [![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-blue.svg)](LICENSE)
 [![PRs bem-vindos](https://img.shields.io/badge/PRs-bem--vindos-brightgreen.svg)](CONTRIBUTING.md)
 
-## Pare de se perguntar para onde foi o seu dinheiro.
+## Seu dinheiro, com toda a clareza.
 
-O Fluxo mostra seu saldo, seus gastos e o que mais pesa no mês **em uma tela só**.<br>
-Sem planilha. Sem cadastro. Sem entregar seus dados para ninguém.
+Anote receitas e despesas em segundos e acompanhe o seu saldo crescer.<br>
+**Simples, bonito e 100% seu.**
 
-### [**→ Abrir o Fluxo agora, é grátis**](https://th3usbit.github.io/fluxo-controle-financeiro/)
+### [**✨ Abrir o Fluxo, é grátis**](https://th3usbit.github.io/fluxo-controle-financeiro/)
 
-<sub>Nada de conta, e-mail ou cartão. Abriu, usou.</sub>
+<sub>Funciona direto no navegador. Sem cadastro, sem instalar nada.</sub>
 
 </div>
 
 <br>
 
-![O Fluxo em ação: os totais sobem, uma despesa é lançada e o saldo reage na hora](.github/assets/fluxo-em-acao.gif)
+![O Fluxo em ação: os totais sobem, um bônus é lançado e o saldo cresce na hora](.github/assets/fluxo-em-acao.gif)
 
 ---
 
-## O fim do mês não precisa ser uma surpresa
+## Organizar as finanças pode ser leve
 
-O salário cai, os dias passam e, quando você olha, o dinheiro já foi. Foi no mercado? Na assinatura que você nem usa mais? Nos pedidos de comida da semana?
+Saber para onde vai cada real é a base de toda conquista: a viagem, a reserva de emergência, o primeiro investimento. O Fluxo transforma isso num hábito rápido e gostoso: **você anota, ele organiza e mostra o seu progresso.**
 
-A planilha dá trabalho demais para manter. O app do banco mistura tudo. E o caderninho fica esquecido na gaveta.
-
-**Sem saber para onde o dinheiro vai, não dá para decidir onde cortar.**
-
-O Fluxo resolve isso do jeito mais simples possível: **você anota, ele organiza e mostra.**
+Em poucos dias você já enxerga o seu mês inteiro. Em poucas semanas, decide com segurança onde guardar mais.
 
 ---
 
-## Tudo o que importa, em um olhar
+## Tudo o que você precisa, em uma tela
 
-### 💰 Seu saldo na cara, sem fazer conta de cabeça
-Receitas, despesas e saldo ficam no topo da tela, com a fatia de cada um no que entrou e saiu. Você bate o olho e já sabe se está no azul ou no vermelho.
+### 💰 Saiba exatamente quanto sobra
+Receitas, despesas e saldo no topo da tela, sempre atualizados. Um olhar e você sabe que está no azul.
 
-### ⚡ Anote o gasto antes de esquecer
-São **dez segundos**: escolha receita ou despesa, digite o valor e salve. As categorias que você já usa aparecem como sugestão, e o valor pode ir do jeito que você escreve: `1.250,50`.
+### ⚡ Lançou, pronto
+Escolha receita ou despesa, digite o valor e salve. **Dez segundos**, com sugestão das categorias que você já usa e o valor escrito do seu jeito: `1.250,50`.
 
-### 🔍 Descubra o vilão do mês
-O painel **Para onde vai o dinheiro** coloca suas categorias em ordem, da que mais pesa para a que menos pesa. Quando a moradia sozinha leva 55% de tudo o que saiu, você vê isso sem precisar procurar.
+### 🎉 Comemore cada conquista
+Entrou dinheiro? O cartão de receitas e o saldo brilham em verde, mostram quanto subiu e a nova entrada chega com destaque na lista. Cada passo para a frente fica visível.
 
-### 🎯 Responda qualquer pergunta sobre o seu dinheiro
-"Quanto eu gastei com comida?" Filtre por categoria e **os totais do topo respondem na hora**. Busque pelo nome, separe só receitas ou só despesas: tudo acompanha o filtro.
+### 📊 Entenda os seus hábitos
+O painel **Para onde vai o dinheiro** organiza as suas categorias por peso, com o percentual de cada uma. Fica fácil ver quanto você já está guardando em investimentos e onde dá para render mais.
 
-### ✨ Veja cada lançamento acontecer
-Lançou uma despesa? O valor aparece no cartão, o saldo reage em vermelho e a linha nova chega brilhando na lista. Nada muda em silêncio, então você nunca fica na dúvida se salvou.
+### 🔍 Encontre qualquer coisa num instante
+Busque pelo nome, veja só receitas ou só despesas, filtre por categoria. **Os totais acompanham o filtro**, então "quanto entrou de freela este mês?" tem resposta na hora.
 
-### 🌗 Do seu jeito, onde você estiver
-Tema claro ou escuro, no computador ou no celular. É só abrir o navegador.
+### 🌗 Lindo de dia e de noite
+Tema claro e tema escuro, no computador ou no celular. Abra onde for mais confortável.
 
 <table>
   <tr>
-    <td width="50%"><img src=".github/assets/formulario.png" alt="Lançando uma nova despesa em segundos"></td>
-    <td width="50%"><img src=".github/assets/tela-escura.png" alt="O Fluxo no tema escuro"></td>
+    <td width="50%"><img src=".github/assets/tela-clara.png" alt="Painel do Fluxo com saldo positivo no tema claro"></td>
+    <td width="50%"><img src=".github/assets/tela-escura.png" alt="Painel do Fluxo com saldo positivo no tema escuro"></td>
   </tr>
   <tr>
-    <td align="center"><b>Lançar leva dez segundos</b></td>
-    <td align="center"><b>Tema escuro para usar à noite</b></td>
+    <td align="center"><b>Seu mês inteiro em um olhar</b></td>
+    <td align="center"><b>Também no tema escuro</b></td>
   </tr>
 </table>
 
----
-
-## Seus números são só seus
-
-Finanças são assunto pessoal. Por isso, o Fluxo **não tem conta, não tem login e não manda nada para servidor nenhum**: cada lançamento fica guardado no seu próprio navegador.
-
-- 🔒 **Ninguém vê seus números.** Nem nós.
-- 🚫 **Sem anúncio, sem venda de dados, sem letra miúda.**
-- 🧾 **Código aberto:** qualquer pessoa pode conferir exatamente o que o Fluxo faz.
-
-**A contrapartida, com toda a transparência:** como os dados vivem no navegador, eles ficam só naquele aparelho. Abrir em outro aparelho ou limpar os dados do site começa a lista do zero.
+<p align="center">
+  <img src=".github/assets/formulario.png" alt="Lançando uma receita em poucos segundos" width="70%"><br>
+  <b>Uma nova receita em dez segundos</b>
+</p>
 
 ---
 
-## Comece em três passos
+## Privacidade de verdade
 
-1. **[Abra o Fluxo.](https://th3usbit.github.io/fluxo-controle-financeiro/)** Não precisa instalar nada.
-2. **Explore os exemplos.** O app abre com um mês de lançamentos de mentira para você ver como tudo funciona.
-3. **Apague os exemplos e lance o seu primeiro gasto.** Em uma semana, você já sabe para onde vai o seu dinheiro.
+O Fluxo foi feito para que as suas finanças continuem sendo só suas.
+
+- 🔒 **Tudo fica no seu navegador.** Nada vai para servidor, nada passa por terceiros.
+- 🙌 **Sem conta e sem login.** Você abre e já está usando.
+- 🌱 **Sem anúncios e sem venda de dados.**
+- 🧾 **Código aberto.** Qualquer pessoa pode conferir cada linha do que o Fluxo faz.
+
+> **Dica:** como os dados moram no navegador, use sempre o mesmo aparelho e o mesmo navegador. Assim o seu histórico fica completo.
+
+---
+
+## Comece hoje, em três passos
+
+1. **[Abra o Fluxo](https://th3usbit.github.io/fluxo-controle-financeiro/).** Ele já está pronto para usar.
+2. **Explore o mês de exemplo** e veja como tudo funciona na prática.
+3. **Apague os exemplos e lance a sua primeira receita.** Pronto: o seu controle financeiro começou.
 
 ---
 
 ## Perguntas frequentes
 
 <details>
-<summary><b>É grátis mesmo?</b></summary>
+<summary><b>Quanto custa?</b></summary>
 <br>
-Sim. O Fluxo é código aberto, sob a licença MIT. Não tem plano pago, anúncio nem cobrança escondida.
+Nada. O Fluxo é gratuito e de código aberto, sob a licença MIT.
 </details>
 
 <details>
-<summary><b>Preciso criar conta?</b></summary>
+<summary><b>Preciso criar uma conta?</b></summary>
 <br>
-Não. Você abre o site e já começa a usar.
+Não. É só abrir o site e começar.
 </details>
 
 <details>
-<summary><b>Alguém consegue ver meus dados?</b></summary>
+<summary><b>Meus dados ficam seguros?</b></summary>
 <br>
-Não. Os lançamentos ficam só no navegador do seu aparelho e não passam por servidor nenhum.
+Sim. Eles ficam guardados no seu próprio navegador e não passam por nenhum servidor.
 </details>
 
 <details>
 <summary><b>Funciona no celular?</b></summary>
 <br>
-Sim, direto no navegador do celular, com a tela adaptada para ele.
+Funciona, direto no navegador, com a tela pensada para o celular.
 </details>
 
 <details>
-<summary><b>Os dados sincronizam entre o computador e o celular?</b></summary>
+<summary><b>Posso usar em mais de um aparelho?</b></summary>
 <br>
-Não. Esse é o preço de não ter servidor: cada aparelho guarda a própria lista. Use sempre no mesmo aparelho e no mesmo navegador.
+Pode abrir em qualquer aparelho. Cada um guarda a própria lista, então o ideal é escolher um aparelho principal para o seu controle.
 </details>
 
 <details>
-<summary><b>Ele se conecta com o meu banco?</b></summary>
+<summary><b>Por que eu mesmo lanço os valores?</b></summary>
 <br>
-Não, e isso é proposital. Você lança cada valor, o que te obriga a olhar para cada gasto. É exatamente esse olhar que muda o hábito.
+Porque é o jeito mais eficaz de criar consciência financeira: anotar leva segundos e faz você notar cada movimento do seu dinheiro.
 </details>
 
 <details>
-<summary><b>E se eu limpar os dados do navegador?</b></summary>
+<summary><b>Como começo do zero?</b></summary>
 <br>
-A lista volta para os exemplos iniciais. Se o histórico é importante para você, evite limpar os dados desse site.
+Exclua as transações de exemplo pela lixeira de cada linha e lance as suas. O Fluxo guarda tudo automaticamente.
 </details>
 
 <br>
 
 <div align="center">
 
-### Pronto para descobrir para onde vai o seu dinheiro?
+### O seu mês mais organizado começa agora.
 
-### [**→ Abrir o Fluxo agora**](https://th3usbit.github.io/fluxo-controle-financeiro/)
+### [**✨ Abrir o Fluxo**](https://th3usbit.github.io/fluxo-controle-financeiro/)
 
 <sub>Grátis · sem cadastro · seus dados ficam com você</sub>
 
