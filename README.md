@@ -5,8 +5,6 @@
   <img alt="Fluxo: seu dinheiro, com toda a clareza. Grátis, sem cadastro e direto no navegador." src=".github/readme/banner-claro.svg" width="100%">
 </picture>
 
-<br><br>
-
 <a href="https://th3usbit.github.io/fluxo-controle-financeiro/">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset=".github/readme/botao-abrir-escuro.svg">
