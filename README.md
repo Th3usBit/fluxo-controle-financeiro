@@ -58,7 +58,7 @@ A API lê estas variáveis do ambiente do processo. O arquivo `.env` não é car
 
 | Método | Rota | O que faz |
 |---|---|---|
-| `GET` | `/transactions` | Lista as transações. Aceita `type`, `category` e `search` |
+| `GET` | `/transactions` | Lista as transações. Aceita `type` (`receita`, `despesa` ou `todas`), `category` e `search` |
 | `POST` | `/transactions` | Cria uma transação com `title`, `amount`, `category` e `type` (opcional) |
 | `DELETE` | `/transactions/:id` | Remove uma transação |
 | `GET` | `/summary` | Devolve receitas, despesas e saldo, com os mesmos filtros da listagem |
