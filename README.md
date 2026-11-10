@@ -1,10 +1,14 @@
-# Fluxo
+<div align="center">
 
-Controle financeiro pessoal no navegador. Você registra receitas e despesas, e o Fluxo mostra o saldo e para onde o dinheiro está indo.
+<a href="https://th3usbit.github.io/fluxo-controle-financeiro/"><img src=".github/assets/capa.jpg" width="100%" alt="Fluxo: saiba para onde vai o seu dinheiro. Telas reais do app nos temas claro e escuro."></a>
 
-**[Abrir o Fluxo](https://th3usbit.github.io/fluxo-controle-financeiro/)**. Não precisa de cadastro nem de instalação.
+Controle financeiro pessoal no navegador. Você registra receitas e despesas, e o Fluxo mostra o saldo e para onde o dinheiro está indo. Sem cadastro e sem instalar nada.
 
-![Tela do Fluxo com os totais, a lista de transações e os gastos por categoria](.github/assets/fluxo-em-acao.gif)
+<a href="https://th3usbit.github.io/fluxo-controle-financeiro/"><img src=".github/assets/botao.svg" height="52" alt="Abrir o Fluxo"></a>
+
+[Rodar na sua máquina](#rodar-na-sua-máquina) · [API](#api) · [Contribuir](CONTRIBUTING.md)
+
+</div>
 
 ## O que ele faz
 
@@ -12,6 +16,8 @@ Controle financeiro pessoal no navegador. Você registra receitas e despesas, e 
 - Busca pelo título e filtra por tipo e categoria, sem diferenciar acentos nem maiúsculas.
 - Mostra o percentual de cada categoria no total.
 - Tem tema claro e escuro.
+
+![O Fluxo em uso: um lançamento entra e os totais e a lista se atualizam](.github/assets/fluxo-em-acao.gif)
 
 ## Onde ficam os dados
 
